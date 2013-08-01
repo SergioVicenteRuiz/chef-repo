@@ -39,7 +39,7 @@ when "arch"
   default['java']['openjdk_packages'] = ["openjdk#{node['java']['jdk_version']}}"]
 when "windows"
   default['java']['install_flavor'] = "windows"
-  default['java']['windows']['url'] = "http://yum.#{node['domain']}/java/jdk-7u25-windows-#{node['java']['arch']}.exe"
+  default['java']['windows']['url'] = "http://yum.#{node['domain']}:8080/java/jdk-7u25-windows-#{node['java']['arch']}.exe"
   default['java']['windows']['package_name'] = "Java SE Development Kit 7 Update 25 (64-bit)"
 when "debian"
   default['java']['java_home'] = "/usr/lib/jvm/default-java"

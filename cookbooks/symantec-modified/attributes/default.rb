@@ -17,5 +17,5 @@
 # limitations under the License.
 #
 default['symantec']['appid'] = '{4ADBF5BE-7CAF-4193-A1F9-DE6820E68569}'
-default['symantec']['install_source'] = "http://yum.#{node['domain']}/symantec/symantec-#{node['kernel']['machine']}-setup.exe"
+default['symantec']['install_source'] = "http://yum.#{node['domain']}:8080/symantec/symantec-#{node['kernel']['machine']}-setup.exe"
 default['symantec']['install_options'] = '/s /v"/qn RUNLIVEUPDATE=1 REBOOT=ReallySuppress"'
