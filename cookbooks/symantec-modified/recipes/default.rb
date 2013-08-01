@@ -25,8 +25,8 @@ windows_package "Symantec Endpoint Protection" do
   action :install
 end
 
-ruby_block "remove symantec::default from run list" do
-  block do
-    node.run_list.remove("recipe[symantec::default]")
-  end
-end  
+#ruby_block "remove symantec::default from run list" do
+#  block do
+#    node.run_list.remove("recipe[symantec::default]")
+#  end
+#end  
