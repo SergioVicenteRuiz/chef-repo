@@ -16,6 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-default['symantec']['appid'] = '{C02FF081-3B1D-47BA-AA68-37D0EA4B75C5}'
+default['symantec']['appid'] = '{4ADBF5BE-7CAF-4193-A1F9-DE6820E68569}'
 default['symantec']['install_source'] = "http://yum.#{node['domain']}:8080/symantec/symantec-#{node['kernel']['machine']}-setup.exe"
-default['symantec']['install_options'] = '/s /v"/quiet /norestart"'
+default['symantec']['install_options'] = '/S'
