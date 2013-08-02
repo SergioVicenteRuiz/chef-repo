@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-include_recipe "java::#{node['java']['install_flavor']}"
+include_recipe "java-modified::#{node['java']['install_flavor']}"
