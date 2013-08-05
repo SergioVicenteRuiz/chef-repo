@@ -24,7 +24,6 @@ else
 end
 
 default['symantec']['extract_path'] = "#{Chef::Config[:file_cache_path]}/symantec"
-default['symantec']['extract_options'] = 'x -y'
 default['symantec']['install_options'] = '/s /v"/qn RUNLIVEUPDATE=1 REBOOT=ReallySuppress"'
 default['symantec']['appid'] = '{4ADBF5BE-7CAF-4193-A1F9-DE6820E68569}'
 

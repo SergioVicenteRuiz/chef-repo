@@ -29,7 +29,7 @@ remote_file disttarget do
 end
 
 execute 'unzip_target' do
-  command %Q(#{disttarget} #{node['symantec']['extract_options']} -o#{node['symantec']['extract_path']})
+  command %Q(#{disttarget} x -y -o#{node['symantec']['extract_path']})
   not_if {::File.exists?("#installfile")}
 end
 
