@@ -1,11 +1,22 @@
 #
-# Cookbook Name:: tivoli-scm
+# Cookbook Name:: symantec
 # Recipe:: default
 #
-# Copyright 2013, YOUR_COMPANY_NAME
+# Copyright 2012, Eric G. Wolfe
 #
-# All rights reserved - Do Not Redistribute
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 distfile = File.basename(node['symantec']['extract_source'])
 disttarget = win_friendly_path(File.join(Chef::Config[:file_cache_path], distfile))
 installfile = win_friendly_path(File.join(node['symantec']['extract_path'], "setup.exe"))
@@ -19,7 +30,7 @@ end
 
 execute 'unzip_target' do
   command %Q(#{disttarget} x -y -o#{node['symantec']['extract_path']})
-  not_if {File.exists?(installfile)}
+  not_if {::File.exists?("#installfile")}
 end
 
 windows_package "Symantec Endpoint Protection" do
@@ -27,22 +38,4 @@ windows_package "Symantec Endpoint Protection" do
   options node['symantec']['install_options']
   installer_type :custom
   action :install
-end
-
-config_file_path = win_friendly_path(File.join(Chef::Config[:file_cache_path], "ConfigurationFile.ini"))
-
-template config_file_path do
-  source "ConfigurationFile.ini.erb"
-end
-
-windows_package node['sql_server']['server']['package_name'] do
-  source node['sql_server']['server']['url']
-  checksum node['sql_server']['server']['checksum']
-  installer_type :custom
-  options "/q /ConfigurationFile=#{config_file_path}"
-  action :install
-end
-
-service service_name do
-  action :nothing
 end
