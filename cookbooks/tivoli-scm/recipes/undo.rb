@@ -29,7 +29,7 @@ end
 
 execute "Uninstall Tivoli SCM" do
   command %Q("#{uninstall_target_file}" -silent -options "#{uninstall_ini}")
-  only_if {File.exists?(uninstall_source)}
+  only_if {File.exists?(uninstall_target_file)}
 end
 
 directory node['tscm']['install_dir'] do
