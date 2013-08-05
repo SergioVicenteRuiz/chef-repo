@@ -25,10 +25,10 @@ remote_file disttarget do
   source node['symantec']['extract_source']
   backup false
   action :create_if_missing
-  notifies :run, "execute[#{target}]", :immediately
+  notifies :run, 'execute[unzip_target]', :immediately
 end
 
-execute target do
+execute 'unzip_target' do
   command %Q(#{disttarget} #{node['symantec']['extract_options']} -o#{node['symantec']['extract_path']})
   not_if {::File.exists?("#installfile")}
 end
