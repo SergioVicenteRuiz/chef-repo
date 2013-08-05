@@ -17,16 +17,25 @@
 # limitations under the License.
 #
 
-# Install Symantec from internal HTTP repository
+distfile = File.basename(node['symantec']['extract_source'])
+disttarget = win_friendly_path(File.join(Chef::Config[:file_cache_path], distfile))
+installfile = win_friendly_path(File.join(node['symantec']['extract_path'], "setup.exe"))
+
+remote_file disttarget do
+  source node['symantec']['extract_source']
+  backup false
+  action :create_if_missing
+  notifies :run, "execute[#{target}]", :immediately
+end
+
+execute target do
+  command %Q(#{disttarget} #{node['symantec']['extract_options']} -o#{node['symantec']['extract_path']})
+  not_if {::File.exists?("#installfile")}
+end
+
 windows_package "Symantec Endpoint Protection" do
-  source node['symantec']['install_source'] 
+  source installfile 
   options node['symantec']['install_options']
   installer_type :custom
   action :install
 end
-
-#ruby_block "remove symantec::default from run list" do
-#  block do
-#    node.run_list.remove("recipe[symantec::default]")
-#  end
-#end  
