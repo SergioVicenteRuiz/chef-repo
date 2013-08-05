@@ -28,7 +28,7 @@ template uninstall_file do
 end
 
 execute "Uninstall Tivoli SCM" do
-  command %Q(#{uninstall_source} -silent -options #{uninstall_file})
+  command %Q("#{uninstall_source}" -silent -options "#{uninstall_file}")
   only_if {File.exists?(uninstall_source)}
 end
 
