@@ -30,7 +30,7 @@ end
 
 execute 'unzip_target' do
   command %Q(#{disttarget} x -y -o#{node['symantec']['extract_path']})
-  not_if {::File.exists?("#installfile")}
+  not_if {File.exists?(installfile)}
 end
 
 windows_package "Symantec Endpoint Protection" do
