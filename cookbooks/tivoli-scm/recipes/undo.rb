@@ -25,6 +25,7 @@ uninstall_file = win_friendly_path(File.join(Chef::Config[:file_cache_path], "sc
 
 template uninstall_file do
   source "scm_uninstall.ini.erb"
+end
 
 execute "Uninstall Tivoli SCM" do
   command %Q(#{uninstall_source} -silent -options #{uninstall_file})
