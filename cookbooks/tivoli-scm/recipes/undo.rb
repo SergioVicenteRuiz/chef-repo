@@ -17,18 +17,27 @@
 # limitations under the License.
 #
 
-# Install Symantec from internal HTTP repository
-execute "Uninstall Symantec Endpoint Protection" do
-  command "msiexec /qn /x#{node['symantec']['appid']}"
+# Uninstall Tivoli SCM from server
+
+uninstall_dir = "#{node['tscm']['install_dir']}/_uninst"
+uninstall_source = win_friendly_path(File.join(uninstall_dir, "uninstaller.exe"))
+uninstall_file = win_friendly_path(File.join(Chef::Config[:file_cache_path], "scm_uninstall.ini"))
+
+template uninstall_file do
+  source "scm_uninstall.ini.erb"
+
+execute "Uninstall Tivoli SCM" do
+  command %Q(#{uninstall_source} -silent -options #{uninstall_file})
+  only_if {File.exists?(uninstall_source)}
 end
 
-windows_reboot 60 do
-  reason "Reboot required for Symantec Endpoint uninstall"
-  action :request
+directory node['tscm']['install_dir'] do
+  recursive true
+  action :delete
 end
 
-ruby_block "remove symantec::undo from run list" do
+ruby_block "remove tivoli-scm::undo from run list" do
   block do
-    node.run_list.remove("recipe[symantec::undo]")
+    node.run_list.remove("recipe[tivoli-scm::undo]")
   end
 end 

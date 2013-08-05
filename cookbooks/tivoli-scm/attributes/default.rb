@@ -53,4 +53,4 @@ when 6.2 # Windows Server 2012
 
 end
 
-default['tscm']['uninstall_dir'] = "C:/Program Files/IBM/SCM/_uninst"
+default['tscm']['install_dir'] = "C:/Program Files/IBM/SCM"

@@ -19,41 +19,38 @@
 #
 
 case platform_version.to_f
-when 5.1 # Windows XP
-  default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/.exe"
-  default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/.jar"
 
 when 5.2 # Windows Server 2003
   if kernel.machine =~ /x86_64/
-    default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/.exe"
-    default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/.jar"
+    default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/scmclient_J5_fp51_winamd64.exe"
+    default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/scmclient_J5_fp51_install.jar"
   else
-    default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/.exe"
-    default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/.jar"
+    default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/scmclient_win32.exe"
+    default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/scmclient_install.jar"
   end
 
-when 6.0 # Windows Server 2008 & Windows Vista
+when 6.0 # Windows Server 2008
   if kernel.machine =~ /x86_64/
-    default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/.exe"
-    default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/.jar"
+    default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/scmclient_J5_fp55_winamd64.exe"
+    default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/scmclient_J5_fp55_install.jar"
   else
-    default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/.exe"
-    default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/.jar"
+    default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/scmclient_J5_fp55_win32.exe"
+    default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/scmclient_J5_fp55_install.jar"
   end
 
-when 6.1 # Windows Server 2008 R2 & Windows 7
+when 6.1 # Windows Server 2008 R2
   if kernel.machine =~ /x86_64/
-    default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/.exe"
-    default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/.jar"
+    default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/scmclient_J5_fp55_winamd64.exe"
+    default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/scmclient_J5_fp55_install.jar"
   else
-    default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/.exe"
-    default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/.jar"
+    default['tscm']['source'] = "http://yum.#{node['domain']}:8080/scm/scmclient_J5_fp55_win32.exe"
+    default['tscm']['jvm'] = "http://yum.#{node['domain']}:8080/scm/scmclient_J5_fp55_install.jar"
   end
 
-when 6.2 # Windows Server 2012 & Windows 8
+when 6.2 # Windows Server 2012
   default['tscm']['source'] = nil
   default['tscm']['jvm'] = nil
 
 end
 
-default['tscm']['appid'] = nil
+default['tscm']['uninstall_dir'] = "C:/Program Files/IBM/SCM/_uninst"
