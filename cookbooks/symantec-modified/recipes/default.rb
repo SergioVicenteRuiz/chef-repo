@@ -17,11 +17,11 @@
 # limitations under the License.
 #
 
-distfile = File.basename(node['symantec']['extract_source'])
-disttarget = win_friendly_path(File.join(Chef::Config[:file_cache_path], distfile))
-installfile = win_friendly_path(File.join(node['symantec']['extract_path'], "setup.exe"))
+symantec_source_file = File.basename(node['symantec']['extract_source'])
+symantec_target_file = win_friendly_path(File.join(Chef::Config[:file_cache_path], symantec_source_file))
+install_file = win_friendly_path(File.join(node['symantec']['extract_path'], "setup.exe"))
 
-remote_file disttarget do
+remote_file symantec_target_file do
   source node['symantec']['extract_source']
   backup false
   action :create_if_missing
@@ -29,12 +29,12 @@ remote_file disttarget do
 end
 
 execute 'unzip_target' do
-  command %Q(#{disttarget} x -y -o#{node['symantec']['extract_path']})
-  not_if {File.exists?(installfile)}
+  command %Q(#{symantec_target_file} x -y -o#{node['symantec']['extract_path']})
+  not_if {File.exists?(install_file)}
 end
 
 windows_package "Symantec Endpoint Protection" do
-  source installfile 
+  source install_file 
   options node['symantec']['install_options']
   installer_type :custom
   action :install

@@ -19,16 +19,16 @@
 
 # Uninstall Tivoli SCM from server
 
-uninstall_dir = "#{node['tscm']['install_dir']}/_uninst"
-uninstall_source = win_friendly_path(File.join(uninstall_dir, "uninstaller.exe"))
-uninstall_file = win_friendly_path(File.join(Chef::Config[:file_cache_path], "scm_uninstall.ini"))
+uninstall_target_dir = "#{node['tscm']['install_dir']}/_uninst"
+uninstall_target_file = win_friendly_path(File.join(uninstall_target_dir, "uninstaller.exe"))
+uninstall_ini = win_friendly_path(File.join(Chef::Config[:file_cache_path], "scm_uninstall.ini"))
 
-template uninstall_file do
+template uninstall_ini do
   source "scm_uninstall.ini.erb"
 end
 
 execute "Uninstall Tivoli SCM" do
-  command %Q("#{uninstall_source}" -silent -options "#{uninstall_file}")
+  command %Q("#{uninstall_target_file}" -silent -options "#{uninstall_ini}")
   only_if {File.exists?(uninstall_source)}
 end
 
