@@ -1,0 +1,160 @@
+################################################################################
+#
+# InstallShield Options File
+#
+# Wizard name: Install
+# Wizard source: scmclient_J5_fp55_install.jar
+# Created on: Thu Aug 01 15:28:15 CEST 2013
+# Created by: InstallShield Options File Generator
+#
+# This file contains values that were specified during a recent execution of
+# Install. It can be used to configure Install with the options specified below
+# when the wizard is run with the "-options" command line option. Read each
+# setting's documentation for information on how to change its value.
+# 
+# A common use of an options file is to run the wizard in silent mode. This lets
+# the options file author specify wizard settings without having to run the
+# wizard in graphical or console mode. To use this options file for silent mode
+# execution, use the following command line arguments when running the wizard:
+# 
+#    -options "scm_install.ini" -silent
+#
+################################################################################
+
+
+################################################################################
+#
+# Has the license been accepted
+#
+# The license must be accepted before installation so this value must be true
+# for the install to be successful. Example: -G licenseAccepted=true
+#
+
+
+-G licenseAccepted=true
+
+
+################################################################################
+#
+# IBM Tivoli Security Compliance Manager Client Install Location
+#
+# The install location of the product. Specify a valid directory into which the
+# product should be installed. If the directory contains spaces, enclose it in
+# double-quotes. For example, to install the product to C:\Program Files\My
+# Product, use
+# 
+#    -P installLocation="C:\Program Files\My Product"
+#
+
+
+-P installLocation="<%= node['tscm']['install_dir'] %>"
+
+
+################################################################################
+#
+# Setup Type
+#
+# The setup type to be used when installing the product. Legal values are:
+# 
+#    clientSetup - IBM Tivoli Security Compliance Manager Client: The IBM
+#                  Tivoli Security Compliance Manager Client runs collectors
+#                  that are used by the IBM Tivoli Security Compliance Manager
+#                  Server to monitor compliance with security policies.
+# 
+# For example, to specify that the "IBM Tivoli Security Compliance Manager
+# Client" setup type is selected, use
+# 
+#    -W setupTypeSelectionPanel.selectedSetupTypeId=clientSetup
+# 
+# You may also set the setup type to nothing by using
+# 
+#    -W setupTypeSelectionPanel.selectedSetypTypeId=
+# 
+# This clears the current setup type and prevents any changes to the set of
+# selected features. Use this option whenever you set feature active states in
+# this options file. If you do not clear the selected setup type, the setup type
+# panel will override any changes you make to feature active states using this
+# file.
+#
+
+
+-W setupTypeSelectionPanel.selectedSetupTypeId=clientSetup
+
+
+################################################################################
+#
+# User Input Field - InstallSentry
+#
+#
+
+
+-W SentryPanel.InstallSentry=""
+
+
+################################################################################
+#
+# User Input Field - clientPort
+#
+# Specify an integer value between 26 and 65535 for the port
+#
+
+
+-W clientConfigPanel.clientPort="1950"
+
+
+################################################################################
+#
+# User Input Field - pushPull
+#
+# Specify whether the client will communicate with the IBM Tivoli Security
+# Compliance Manager in push or pull mode. Note: specify exactly push or pull as
+# the check is case sensitive.
+#
+
+
+-W clientConfigPanel.pushPull="push"
+
+
+################################################################################
+#
+# User Input Field - serverHostname
+#
+# Specify the hostname or IP address of the IBM Tivoli Security Compliance
+# Manager Server that will manage this client.
+#
+
+
+-W clientServerConfig.serverHostname="0.0.0.0"
+
+
+################################################################################
+#
+# User Input Field - serverPort
+#
+# Specify an integer port between 26 and 65535
+#
+
+
+-W clientServerConfig.serverPort="1951"
+
+
+################################################################################
+#
+# User Input Field - clientDHCP
+#
+#
+
+
+-W clientServerConfig.clientDHCP=""
+
+
+################################################################################
+#
+# User Input Field - alias
+#
+# If the client uses DHCP, you may specify an alias for the server to reference
+# the client. This value is optional, but recommended for DHCP clients.
+#
+
+
+-W clientDHCPConfigPanel.alias=""
