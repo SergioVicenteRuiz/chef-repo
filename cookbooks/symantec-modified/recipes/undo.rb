@@ -27,8 +27,8 @@ windows_reboot 60 do
   action :request
 end
 
-ruby_block "remove symantec::undo from run list" do
+ruby_block "remove symantec-modified::undo from run list" do
   block do
-    node.run_list.remove("recipe[symantec::undo]")
+    node.run_list.remove("recipe[symantec-modified::undo]")
   end
 end 
