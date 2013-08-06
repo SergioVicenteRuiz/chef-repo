@@ -6,3 +6,8 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
+include_recipe "java-modified"
+include_recipe "vcredist"
+
+

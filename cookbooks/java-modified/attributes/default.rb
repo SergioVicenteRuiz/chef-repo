@@ -17,10 +17,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-default['java']['install_flavor'] = "windows"
-default['java']['windows']['url'] = "http://yum.#{node['domain']}:8080/java/jdk-7u25-windows-#{node['kernel']['machine']}.exe"
+
 if kernel.machine =~ /x86_64/
   default['java']['windows']['package_name'] = "Java SE Development Kit 7 Update 25 (64-bit)"
+  default['java']['windows']['url'] = "http://yum.#{node['domain']}:8080/java/jdk-7u25-windows-x64.exe"
+  default['jdk']['appid'] = "{64A3A4F4-B792-11D6-A78A-00B0D0170250}"
+  default['jre']['appid'] = "{26A24AE4-039D-4CA4-87B4-2F86417025FF}"
 else
   default['java']['windows']['package_name'] = "Java SE Development Kit 7 Update 25"
+  default['java']['windows']['url'] = "http://yum.#{node['domain']}:8080/java/jdk-7u25-windows-i586.exe"
+  default['jdk']['appid'] = "{32A3A4F4-B792-11D6-A78A-00B0D0170250}"
+  default['jre']['appid'] = "{26A24AE4-039D-4CA4-87B4-2F83217025FF}"
 end

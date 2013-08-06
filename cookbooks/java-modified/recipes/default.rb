@@ -18,4 +18,11 @@
 # limitations under the License.
 #
 
-include_recipe "java-modified::#{node['java']['install_flavor']}"
+Chef::Log.warn("No download url set for java installer.") unless node['java']['windows']['url']
+
+windows_package node['java']['windows']['package_name'] do
+  source node['java']['windows']['url']
+  action :install
+  installer_type :custom
+  options "/s"
+end
