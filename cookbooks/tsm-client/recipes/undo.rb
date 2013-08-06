@@ -17,18 +17,21 @@
 # limitations under the License.
 #
 
-# Uninstall Symantec Endpoint Protection
-execute "Uninstall Symantec Endpoint Protection" do
-  command "msiexec /qn /x#{node['symantec']['appid']}"
+# Uninstall IBM Tivoli Storage Manager Client
+
+baclient_dir = "#{node['tsm']['install_dir']}/baclient"
+
+execute "Uninstall TSM Client" do
+  command "msiexec /qn /x#{node['tsm']['appid']}"
 end
 
-windows_reboot 60 do
-  reason "Reboot required for Symantec Endpoint uninstall"
-  action :request
+directory baclient_dir do
+  recursive true
+  action :delete
 end
 
-ruby_block "remove symantec::undo from run list" do
+ruby_block "remove tsm-client::undo from run list" do
   block do
-    node.run_list.remove("recipe[symantec::undo]")
+    node.run_list.remove("recipe[tsm-client::undo]")
   end
 end 
