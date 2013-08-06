@@ -19,13 +19,13 @@
 
 if kernel.machine =~ /x86_64/
   default['symantec']['extract_source'] = "http://yum.#{node['domain']}:8080/symantec/Symantec_Endpoint_Protection_12.1.3_Win64-bit_Client_EN.exe"
+  default['symantec']['appid'] = '{C02FF081-3B1D-47BA-AA68-37D0EA4B75C5}'
 else
   default['symantec']['extract_source'] = "http://yum.#{node['domain']}:8080/symantec/Symantec_Endpoint_Protection_12.1.3_Win32-bit_Client_EN.exe"
+  default['symantec']['appid'] = '{8693E64C-16F3-4388-ACC0-9E8D586BEC17}'
 end
 
 default['symantec']['extract_path'] = "#{Chef::Config[:file_cache_path]}/symantec"
 default['symantec']['install_options'] = '/s /v"/qn RUNLIVEUPDATE=1 REBOOT=ReallySuppress"'
 #default['symantec']['appid'] = '{4ADBF5BE-7CAF-4193-A1F9-DE6820E68569}'
-default['symantec']['appid'] = '{C02FF081-3B1D-47BA-AA68-37D0EA4B75C5}'
-
 
