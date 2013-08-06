@@ -18,13 +18,15 @@
 #
 
 # Uninstall Symantec Endpoint Protection
+
 execute "Uninstall Symantec Endpoint Protection" do
   command "msiexec /qn /x #{node['symantec']['appid']} /l*v %temp%/uninstall_sep.log"
+  notifies :request, 'windows_reboot[60]'
 end
 
 windows_reboot 60 do
-  reason "Reboot required for Symantec Endpoint uninstall"
-  action :request
+  reason 'Reboot required for Symantec Endpoint uninstall'
+  action :nothing
 end
 
 ruby_block "remove symantec-modified::undo from run list" do

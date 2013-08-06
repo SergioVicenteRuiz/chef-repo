@@ -38,4 +38,10 @@ windows_package "Symantec Endpoint Protection" do
   options node['symantec']['install_options']
   installer_type :custom
   action :install
+  notifies :request, 'windows_reboot[60]'
+end
+
+windows_reboot 60 do
+  reason 'Reboot required for Symantec Endpoint install'
+  action :nothing
 end
