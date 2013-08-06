@@ -23,6 +23,12 @@ execute "Uninstall vcredist_x86" do
   command "msiexec /qn /x #{node['vcredist_x86']['appid']} /l*v %temp%/uninstall_vcredist_x86.log"
 end
 
+if kernel.machine =~ /x86_64/
+  execute "Uninstall vcredist_x86" do
+  command "msiexec /qn /x #{node['vcredist_x64']['appid']} /l*v %temp%/uninstall_vcredist_x64.log"
+  end
+end
+
 
 ruby_block "remove vcredist::undo from run list" do
   block do
