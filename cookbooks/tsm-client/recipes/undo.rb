@@ -22,7 +22,7 @@
 baclient_dir = "#{node['tsm']['install_dir']}/baclient"
 
 execute "Uninstall TSM Client" do
-  command "msiexec /qn /x#{node['tsm']['appid']}"
+  command "msiexec /qn /x#{node['tsm']['appid']} /l*v %temp%/uninstall_tsm.log"
 end
 
 directory baclient_dir do
