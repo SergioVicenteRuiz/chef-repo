@@ -33,6 +33,8 @@ execute 'unzip_target' do
   not_if {File.exists?(install_file)}
 end
 
+node.default['windows']['allow_pending_reboots'] = false
+
 windows_reboot 60 do
   reason 'Reboot required for Symantec Endpoint install'
   action :nothing
