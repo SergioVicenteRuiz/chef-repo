@@ -1,6 +1,6 @@
 #
 # Author:: Seth Chisamore (<schisamo@opscode.com>)
-# Cookbook Name:: powershell
+# Cookbook Name:: tivoli-scm
 # Attribute:: default
 #
 # Copyright:: Copyright (c) 2011 Opscode, Inc.

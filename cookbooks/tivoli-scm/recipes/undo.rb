@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: symantec
+# Cookbook Name:: tivoli-scm
 # Recipe:: undo 
 #
 # Copyright 2012, Eric G. Wolfe

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: symantec
+# Cookbook Name:: tsm-client
 # Recipe:: undo 
 #
 # Copyright 2012, Eric G. Wolfe
