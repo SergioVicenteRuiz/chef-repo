@@ -25,7 +25,7 @@ end
 
 if kernel.machine =~ /x86_64/
   execute "Uninstall vcredist_x86" do
-  command "msiexec /qn /x #{node['vcredist_x64']['appid']} /l*v %temp%/uninstall_vcredist_x64.log"
+    command "msiexec /qn /x #{node['vcredist_x64']['appid']} /l*v %temp%/uninstall_vcredist_x64.log"
   end
 end
 
