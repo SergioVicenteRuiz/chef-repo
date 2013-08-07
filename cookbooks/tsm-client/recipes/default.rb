@@ -27,7 +27,8 @@ execute 'tsm_unzip_target' do
   not_if {File.exists?(install_file)}
 end
 
-template dsm_opt_file do
+#template dsm_opt_file do
+template "C:/dsm.opt" do
   source "dsm.opt.erb"
 end
 
