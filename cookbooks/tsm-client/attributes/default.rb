@@ -18,6 +18,7 @@
 #
 
 default['tsm']['extract_path'] = "#{Chef::Config[:file_cache_path]}/tsm_images/TSM_BA_Client"
+default['tsm']['dsm_opt_extract_path'] = "#{Chef::Config[:file_cache_path]}/tsm_images/TSM_BA_Client/baclient/Program Files/Tivoli/TSM/config"
 default['tsm']['install_dir'] = "C:/Tivoli/TSM"
 
 if kernel.machine =~ /x86_64/
