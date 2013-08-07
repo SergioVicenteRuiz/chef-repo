@@ -25,7 +25,6 @@ end
 execute 'tsm_unzip_target' do
   command %Q(#{tsm_target_file} -s -e -f #{node['tsm']['extract_path']})
   not_if {File.exists?(install_file)}
-  notifies :run, 'template[dsm_opt_file]', :immediately
 end
 
 template dsm_opt_file do
