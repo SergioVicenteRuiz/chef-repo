@@ -19,10 +19,10 @@ remote_file tsm_target_file do
   source node['tsm']['extract_source']
   backup false
   action :create_if_missing
-  notifies :run, 'execute[unzip_target]', :immediately
+  notifies :run, 'execute[tsm_unzip_target]', :immediately
 end
 
-execute 'unzip_target' do
+execute 'tsm_unzip_target' do
   command %Q(#{tsm_target_file} -s -e -f #{node['tsm']['extract_path']})
   not_if {File.exists?(install_file)}
   notifies :run, 'template[dsm_opt_file]', :immediately
