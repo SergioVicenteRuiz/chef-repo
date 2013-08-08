@@ -41,7 +41,7 @@ end
 execute 'tsm_service_create' do
   command %Q(#{node['tsm']['install_dir']}\\dsmcutil.exe install scheduler /name:#{node['tsm']['service']} /node:#{node['hostname']} /password:#{node['tsm']['password']} /validate:yes /clientdir:#{node['tsm']['install_dir']} /optfile:#{node['tsm']['install_dir']}\\dsm.opt /autostart:yes)
   not_if {Win32::Service.exists?(node['tsm']['service'])}
-  notifies :start, "service[node['tsm']['service']]", :immediately
+  notifies :start, "service[#{node['tsm']['service']}]", :immediately
 end
 
 
