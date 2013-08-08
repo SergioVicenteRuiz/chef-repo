@@ -14,7 +14,6 @@ tsm_source_file = File.basename(node['tsm']['extract_source'])
 tsm_target_file = win_friendly_path(File.join(Chef::Config[:file_cache_path], tsm_source_file))
 install_file = win_friendly_path(File.join(node['tsm']['extract_path'], "IBM Tivoli Storage Manager Client.msi"))
 dsm_opt_extract_file = win_friendly_path(File.join(node['tsm']['dsm_opt_extract_path'], "dsm.opt"))
-install_dir = win_friendly_path(node['tsm']['install_dir'])
 
 remote_file tsm_target_file do
   source node['tsm']['extract_source']
