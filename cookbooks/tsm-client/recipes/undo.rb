@@ -19,6 +19,12 @@
 
 # Uninstall IBM Tivoli Storage Manager Client
 
+execute 'tsm_service_delete' do
+  command %Q(#{node['tsm']['install_dir']}/dsmcutil.exe remove /name:"#{node['tsm']['service']}")
+  only_if {Win32::Service.exists?(node['tsm']['service'])}
+end
+
+
 execute "Uninstall TSM Client" do
   command "msiexec /qn /x #{node['tsm']['appid']} /l*v %temp%/uninstall_tsm.log"
 end

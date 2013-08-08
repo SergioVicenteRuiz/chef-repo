@@ -39,14 +39,9 @@ windows_package "IBM Tivoli Storage Manager Client" do
   action :install
 end
 
-service node['tsm']['service'] do
-  action :nothing
-end
-
 execute 'tsm_service_create' do
-  command %Q(#{install_dir}\\dsmcutil.exe install scheduler /name:"#{node['tsm']['service']}" /node:#{node['hostname']} /password:#{node['tsm']['password']} /validate:yes /clientdir:#{install_dir} /optfile:#{install_dir}\\dsm.opt /autostart:yes)
+  command %Q(#{node['tsm']['install_dir']}/dsmcutil.exe install scheduler /name:"#{node['tsm']['service']}" /node:#{node['hostname']} /password:#{node['tsm']['password']} /validate:yes /clientdir:#{install_dir} /optfile:#{install_dir}\\dsm.opt /autostart:yes)
   not_if {Win32::Service.exists?(node['tsm']['service'])}
-  notifies :start, "service[#{node['tsm']['service']}]", :immediately
 end
 
 
