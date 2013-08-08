@@ -19,7 +19,7 @@
 
 default['tsm']['extract_path'] = "#{Chef::Config[:file_cache_path]}/tsm_images/TSM_BA_Client"
 default['tsm']['install_dir'] = "C:/Tivoli/TSM/baclient"
-default['tsm']['service'] = "TSM Scheduler Service"
+default['tsm']['service'] = "TSM_Scheduler"
 default['tsm']['password'] = "nodepassword"
 
 if kernel.machine =~ /x86_64/
