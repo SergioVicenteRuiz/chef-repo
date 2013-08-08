@@ -13,7 +13,7 @@ include_recipe "vcredist"
 tsm_source_file = File.basename(node['tsm']['extract_source'])
 tsm_target_file = win_friendly_path(File.join(Chef::Config[:file_cache_path], tsm_source_file))
 install_file = win_friendly_path(File.join(node['tsm']['extract_path'], "IBM Tivoli Storage Manager Client.msi"))
-dsm_opt_file = win_friendly_path(File.join(node['tsm']['dsm_opt_extract_path'], "dsm.opt"))
+dsm_opt_extract_file = win_friendly_path(File.join(node['tsm']['dsm_opt_extract_path'], "dsm.opt"))
 
 remote_file tsm_target_file do
   source node['tsm']['extract_source']
@@ -27,7 +27,7 @@ execute 'tsm_unzip_target' do
   not_if {File.exists?(install_file)}
 end
 
-template dsm_opt_file do
+template dsm_opt_extract_file do
   source "dsm.opt.erb"
 end
 
@@ -43,7 +43,7 @@ service node['tsm']['service'] do
 end
 
 execute 'tsm_service_create' do
-  command %Q(#{win_friendly_path(node['tsm']['install_dir'])}\\dsmcutil.exe install scheduler /name:#{node['tsm']['service']} /node:#{node['hostname']} /password:#{node['tsm']['password']} /validate:yes /clientdir:#{win_friendly_path(node['tsm']['install_dir'])} /optfile:#{win_friendly_path(node['tsm']['install_dir'])}\\dsm.opt /autostart:yes)
+  command %Q(#{node['tsm']['install_dir']}\\dsmcutil.exe install scheduler /name:#{node['tsm']['service']} /node:#{node['hostname']} /password:#{node['tsm']['password']} /validate:yes /clientdir:#{node['tsm']['install_dir']} /optfile:#{node['tsm']['install_dir']}\\dsm.opt /autostart:yes)
   not_if {Win32::Service.exists?(node['tsm']['service'])}
   notifies :start, "service[#{node['tsm']['service']}]", :immediately
 end
