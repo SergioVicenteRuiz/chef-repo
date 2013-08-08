@@ -29,8 +29,8 @@ end
 template dsm_opt_file do
   source "dsm.opt.erb"
   notifies :run, 'execute[tsm_service_create]', :immediately
-  notifies :restart, "service[#{node['tsm']['service']}]"
-  notifies :start, "service[#{node['tsm']['service']}]"
+  notifies :restart, "service[#{node['tsm']['service']}]", :immediately
+#  notifies :start, "service[#{node['tsm']['service']}]"
 end
 
 execute 'tsm_service_create' do
