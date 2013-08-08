@@ -39,7 +39,7 @@ windows_package "IBM Tivoli Storage Manager Client" do
   action :install
 end
 
-windows_path install_dir do
+windows_path "#{install_dir}" do
  action :add
 end
 
