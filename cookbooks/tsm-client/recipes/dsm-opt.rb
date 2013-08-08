@@ -21,6 +21,10 @@
 
 dsm_opt_file = win_friendly_path(File.join(node['tsm']['install_dir'], "dsm.opt"))
 
+service node['tsm']['service'] do
+  action :nothing
+end
+
 template dsm_opt_file do
   source "dsm.opt.erb"
   notifies :restart, "service[#{node['tsm']['service']}]", :immediately
