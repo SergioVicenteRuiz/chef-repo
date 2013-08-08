@@ -17,19 +17,11 @@
 # limitations under the License.
 #
 
-# Uninstall IBM Tivoli Storage Manager Client
+# Distributes dsm.opt file
 
-execute "Uninstall TSM Client" do
-  command "msiexec /qn /x #{node['tsm']['appid']} /l*v %temp%/uninstall_tsm.log"
+dsm_opt_file = win_friendly_path(File.join(node['tsm']['install_dir'], "dsm.opt"))
+
+template dsm_opt_file do
+  source "dsm.opt.erb"
+  notifies :restart, 'service[#{node['tsm']['service']}]', :immediately
 end
-
-directory node['tsm']['install_dir'] do
-  recursive true
-  action :delete
-end
-
-ruby_block "remove tsm-client::undo from run list" do
-  block do
-    node.run_list.remove("recipe[tsm-client::undo]")
-  end
-end 

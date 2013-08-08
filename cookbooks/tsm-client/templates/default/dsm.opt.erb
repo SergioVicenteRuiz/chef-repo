@@ -1,193 +1,21 @@
-* PRUEBA SERGIO
+*NodeName		XXXXXXXX
+PASSWORDACCESS		GENERATE
+DOMAIN			ALL-LOCAL
+TCPSERVERADDRESS	0.0.0.0
 
-*********************************************************************
-* Tivoli Storage Manager
-*
-* Sample dsm.opt for the Microsoft Windows Backup-Archive Client
-*********************************************************************
+SNAPSHOTPROVIDERFS	VSS
+SNAPSHOTPROVIDERIMAGE	VSS
 
-*====================================================================
-* TCP/IP
-*====================================================================
+SchedLogRetention	14,D
+ErrorLogRetention	14,D
 
-*commmethod      tcpip
-tcpport          1500
-
-************************************************************************
-* TCPServeraddress
-*
-* +------------------+----------------------------------------------+
-* | TCPServeraddress | server_addr                                  |
-* +------------------+----------------------------------------------+
-* Default: None
-*
-* Option file examples:
-*
-* TCPServeraddress localhost
-************************************************************************
-
-*====================================================================
-* named pipes
-*====================================================================
-
-*commmethod namedpipe
-namedpipename \\.\pipe\adsmpipe
-
-
-************************************************************************
-* COMPression
-*
-* +------------------+----------------------------------------------+
-* | COMPression      | ON|OFf                                       |
-* +------------------+----------------------------------------------+
-* System default: OFf
-*
-* Option file example:
-*
-* COMPression ON
-* COMPression OFf
-************************************************************************
-
-
-************************************************************************
-* DOMain
-*
-* +------------------+----------------------------------------------+
-* | DOMain           | ALL-LOCAL|domain                             |
-* +------------------+----------------------------------------------+
-* System default: ALL-LOCAL
-*
-* Options file examples:
-*
-* DOMain ALL-LOCAL Q:
-* DOMain ALL-LOCAL SYSTEMOBJECT
-************************************************************************
-
-
-************************************************************************
-* EXclude and INclude
-*
-* +------------------+----------------------------------------------+
-* | EXclude          | pattern                                      |
-* +------------------+----------------------------------------------+
-* | INclude          | pattern                                      |
-* +------------------+----------------------------------------------+
-*
-* EXclude and INclude patterns are written using an extended pattern
-* match language.  This language uses the native operating system's
-* metacharacters (wildcards) whenever possible.  A list of the
-* supported metacharacters for the match language follows:
-*
-*   Function               Windows  
-*   ---------------------  -------- 
-*   Match one character    ?        
-*   Match n characters     *        
-*   Match n directories    \... (1) 
-*   Directory Separator    \        
-*   Open Character Class   [(1)
-*   Character Class Range  -    (1)
-*   Close Character Class  ](1)    
-*   Literal Escape         \    (1)
-*   Drive Separator        :       
-*
-* Option file example:
-*
-*
-*Exclude "*:\microsoft uam volume\...\*"
-*Exclude "*:\microsoft uam volume\...\*.*"
-*Exclude "*:\...\EA DATA. SF"
-*Exclude *:\...\pagefile.sys
-*Exclude *:\IBMBIO.COM
-*Exclude *:\IBMDOS.COM
-*Exclude *:\MSDOS.SYS
-*Exclude *:\IO.SYS
-*Exclude *:\...\system32\config\...\*
-*Exclude *:\...\system32\Perflib*.dat
-*Exclude *:\...\system32\dhcp\...\*
-*Include *:\...\system32\dhcp\backup\...\*
-*Exclude *:\...\system32\dns\...\*
-*Include *:\...\system32\dns\backup\...\*
-*Exclude.dir "*:\System Volume Information"
-*Exclude.dir "*:\...\Temporary Internet Files"
-*Exclude.dir *:\Recycled
-*Exclude.dir *:\Recycler
-*Exclude.dir *:\$Recycle.bin
-
-************************************************************************
-
-
-************************************************************************
-* Nodename
-*
-* +------------------+----------------------------------------------+
-* | MACHinename      | client_name                                  |
-* +------------------+----------------------------------------------+
-* Default:  Netbios Name (Windows Computer name)
-*
-* Option file example:
-*
-* Nodename storman
-************************************************************************
-
-
-************************************************************************
-* REPlace
-*
-* +------------------+----------------------------------------------+
-* | REPlace          | Yes|No|Prompt                                |
-* +------------------+----------------------------------------------+
-* System default: Prompt
-*
-* Option file example:
-*
-* REPlace Yes
-************************************************************************
-
-
-************************************************************************
-* SUbdir
-*
-* +------------------+----------------------------------------------+
-* | SUbdir           | Yes|No                                       |
-* +------------------+----------------------------------------------+
-* System default: No
-*
-* Option file example:
-*
-* SUbdir Yes
-************************************************************************
-
-
-************************************************************************
-* TCPPort
-*
-* +------------------+----------------------------------------------+
-* | TCPPort          | port_addr                                    |
-* +------------------+----------------------------------------------+
-* Default: 1500
-*
-* Option file example:
-*
-* TCPPORT 1500
-************************************************************************
-
-* TCPBUFFSIZE   31
-* TCPWINDOWSIZE 24
+*TCPCLIENTADDRESS	0.0.0.0
+*SCHEDMODE		PROMPTED
+*TCPCLIENTPORT		1501
 
 
 
-************************************************************************
-* Verbose
-*
-* +------------------+----------------------------------------------+
-* | Verbose          |                                              |
-* +------------------+----------------------------------------------+
-* System default: Verbose
-*
-* Option file example:
-*
-* Verbose
-************************************************************************
 
 
-* passwordaccess generate
+
+

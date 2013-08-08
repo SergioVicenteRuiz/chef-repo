@@ -18,7 +18,9 @@
 #
 
 default['tsm']['extract_path'] = "#{Chef::Config[:file_cache_path]}/tsm_images/TSM_BA_Client"
-default['tsm']['install_dir'] = "C:/Tivoli/TSM"
+default['tsm']['install_dir'] = "C:/Tivoli/TSM/baclient"
+default['tsm']['service'] = "TSM Scheduler Service"
+default['tsm']['password'] = "nodepassword"
 
 if kernel.machine =~ /x86_64/
   default['tsm']['extract_source'] = "http://yum.#{node['domain']}:8080/tsm/6.4.0.0-TIV-TSMBAC-WinX64.exe"
