@@ -27,5 +27,13 @@ end
 
 template dsm_opt_file do
   source "dsm.opt.erb"
-  notifies :restart, "service[#{node['tsm']['service']}]", :immediately
+  notifies :run, 'execute[tsm_service_create]', :immediately
+  notifies :restart, "service[#{node['tsm']['service']}]"
 end
+
+execute 'tsm_service_create' do
+  command %Q(#{node['tsm']['install_dir']}/dsmcutil.exe install scheduler /name:"#{node['tsm']['service']}" /node:#{node['hostname']} /password:#{node['tsm']['password']} /validate:yes /clientdir:#{install_dir} /optfile:#{install_dir}\\dsm.opt /autostart:yes)
+  not_if {Win32::Service.exists?(node['tsm']['service'])}
+end
+
+
