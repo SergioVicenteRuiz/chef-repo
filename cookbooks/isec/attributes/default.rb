@@ -41,11 +41,3 @@ when "windows"
 else
   default['isec']['install_flavor'] = "linux"
 end
-
-
-
-
-
-
-
-
