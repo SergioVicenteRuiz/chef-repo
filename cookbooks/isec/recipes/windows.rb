@@ -18,7 +18,6 @@ else
   security_template_source = "isec-#{node['hostanme']}.inf.erb"
 end
 
-
 template security_template_file do
   source security_template_source
   notifies :run, 'execute[secedit]', :immediately
@@ -26,6 +25,5 @@ end
 
 execute 'secedit' do
   command %Q(secedit.exe /configure /DB #{security_db_file} /CFG #{security_template_file} /override /quiet)
-  only_if {File.exists?(security_template_file)}
   action :nothing
 end
