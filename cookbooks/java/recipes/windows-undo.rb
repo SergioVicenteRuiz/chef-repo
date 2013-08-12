@@ -27,8 +27,8 @@ execute "Uninstall JDK" do
   command "msiexec /qn /x #{node['jdk']['appid']} /l*v %temp%/uninstall_jdk.log"
 end
 
-ruby_block "remove java-modified::undo from run list" do
+ruby_block "remove java::windows-undo from run list" do
   block do
-    node.run_list.remove("recipe[java-modified::undo]")
+    node.run_list.remove("recipe[java::windows-undo]")
   end
 end 
