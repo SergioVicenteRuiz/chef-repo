@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-default['isec']['override'] = false
+node.default['isec']['override'] = false
 
 case node['platform_family']
 when "rhel", "fedora"
