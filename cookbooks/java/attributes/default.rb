@@ -39,8 +39,19 @@ when "arch"
   default['java']['openjdk_packages'] = ["openjdk#{node['java']['jdk_version']}}"]
 when "windows"
   default['java']['install_flavor'] = "windows"
-  default['java']['windows']['url'] = nil
-  default['java']['windows']['package_name'] = "Java(TM) SE Development Kit 7 (64-bit)"
+#  default['java']['windows']['url'] = nil
+#  default['java']['windows']['package_name'] = "Java(TM) SE Development Kit 7 (64-bit)"
+  if kernel.machine =~ /x86_64/
+    default['java']['windows']['package_name'] = "Java SE Development Kit 7 Update 25 (64-bit)"
+    default['java']['windows']['url'] = "http://yum.#{node['domain']}:8080/java/jdk-7u25-windows-x64.exe"
+    default['jdk']['appid'] = "{64A3A4F4-B792-11D6-A78A-00B0D0170250}"
+    default['jre']['appid'] = "{26A24AE4-039D-4CA4-87B4-2F86417025FF}"
+  else
+    default['java']['windows']['package_name'] = "Java SE Development Kit 7 Update 25"
+    default['java']['windows']['url'] = "http://yum.#{node['domain']}:8080/java/jdk-7u25-windows-i586.exe"
+    default['jdk']['appid'] = "{32A3A4F4-B792-11D6-A78A-00B0D0170250}"
+    default['jre']['appid'] = "{26A24AE4-039D-4CA4-87B4-2F83217025FF}"
+  end
 when "debian"
   default['java']['java_home'] = "/usr/lib/jvm/default-java"
   default['java']['openjdk_packages'] = ["openjdk-#{node['java']['jdk_version']}-jdk", "default-jre-headless"]
@@ -60,7 +71,8 @@ if node['java']['install_flavor'] == 'ibm'
 end
 
 # if you change this to true, you can download directly from Oracle
-default['java']['oracle']['accept_oracle_download_terms'] = false
+#default['java']['oracle']['accept_oracle_download_terms'] = false
+default['java']['oracle']['accept_oracle_download_terms'] = true
 
 # direct download paths for oracle, you have been warned!
 
