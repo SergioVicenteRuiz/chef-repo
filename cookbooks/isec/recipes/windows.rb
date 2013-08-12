@@ -12,7 +12,7 @@ security_db_file = win_friendly_path(File.join(security_db_path, "isec-template.
 security_template_path = win_friendly_path("%SystemRoot%/security/templates")
 security_template_file = win_friendly_path(File.join(security_template_path, "isec-template.inf"))
 
-if node['isec']['override'] = true
+if node['isec']['override'] == true
   security_template_source = "isec-#{node['hostname']}.inf.erb"
 else
   security_template_source = "isec-#{node['isec']['install_flavor']}#{node['isec']['windows_ver']}.inf.erb"
