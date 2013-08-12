@@ -6,3 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
+include_recipe "isec::#{node['isec']['install_flavor']}"
+
