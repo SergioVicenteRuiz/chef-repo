@@ -20,11 +20,11 @@
 # Uninstall JRE 7 y JDK 1.7
 
 execute "Uninstall JRE" do
-  command "msiexec /qn /x #{node['jre']['appid']} /l*v %temp%/uninstall_jre.log"
+  command "msiexec /qn /x #{node['java']['jre']['appid']} /l*v %temp%/uninstall_jre.log"
 end
 
 execute "Uninstall JDK" do
-  command "msiexec /qn /x #{node['jdk']['appid']} /l*v %temp%/uninstall_jdk.log"
+  command "msiexec /qn /x #{node['java']['jdk']['appid']} /l*v %temp%/uninstall_jdk.log"
 end
 
 ruby_block "remove java-modified::undo from run list" do
