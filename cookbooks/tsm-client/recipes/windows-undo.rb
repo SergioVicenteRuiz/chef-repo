@@ -36,6 +36,6 @@ end
 
 ruby_block "remove tsm-client::undo from run list" do
   block do
-    node.run_list.remove("recipe[tsm-client::undo]")
+    node.run_list.remove("recipe[tsm-client::windows-undo]")
   end
 end 
