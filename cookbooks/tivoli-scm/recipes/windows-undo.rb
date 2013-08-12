@@ -37,8 +37,8 @@ directory node['tscm']['install_dir'] do
   action :delete
 end
 
-ruby_block "remove tivoli-scm::undo from run list" do
+ruby_block "remove tivoli-scm::windows-undo from run list" do
   block do
-    node.run_list.remove("recipe[tivoli-scm::undo]")
+    node.run_list.remove("recipe[tivoli-scm::windows-undo]")
   end
 end 
