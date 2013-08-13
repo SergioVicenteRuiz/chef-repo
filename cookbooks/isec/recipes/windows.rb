@@ -33,6 +33,26 @@ else
 
 # Configura seccion 1.5 (Network Settings)
 
+  windows_feature "SimpleTCP" do
+    action :remove
+  end
+
+  windows_feature "TFTP" do
+    action :remove
+  end
+
+  windows_feature "TelnetServer" do
+    action :remove
+  end
+
+  windows_feature "IIS-FTPServer" do
+    action :install
+  end
+
+  windows_feature "SNMP" do
+    action :install
+  end
+
 # Configura seccion 1.8 (Protecting Resources –OSRs)
 
 
