@@ -7,9 +7,9 @@
 # All rights reserved - Do Not Redistribute
 #
 
-security_db_path = win_friendly_path("%SystemRoot%/security/database")
+security_db_path = win_friendly_path(node['kernel']['os_info']['windows_directory']/security/database)
 security_db_file = win_friendly_path(File.join(security_db_path, "isec-template.sdb"))
-security_template_path = win_friendly_path("%SystemRoot%/security/templates")
+security_template_path = win_friendly_path(node['kernel']['os_info']['windows_directory']/security/templates)
 security_template_file = win_friendly_path(File.join(security_template_path, "isec-template.inf"))
 
 if node['isec']['override'] == true
