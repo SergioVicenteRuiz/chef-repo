@@ -53,6 +53,10 @@ else
     action :install
   end
 
+  windows_registry 'HKLM\SYSTEM\CurrentControlSet\services\SNMP\Parameters\TrapConfiguration\#{node['isec']['snmp_community']}' do
+      values '1' => 1"#{node['isec']['snmp_server']}"
+  end
+
 # Configura seccion 1.8 (Protecting Resources –OSRs)
 
 
