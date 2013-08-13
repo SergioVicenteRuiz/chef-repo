@@ -18,10 +18,9 @@ if node['isec']['override'] == true
 else
 
 # 1.1 Password Requirements
-# 1.2 Logging (except 1.2.10, 1.2.11)
+# 1.2 Logging
 # 1.7 Identify and Authenticate Users
-# 1.8.22 Protecting Resources -OSRs - Registry Settings
-# 1.8.23 Protecting Resources -OSRs - Registry Settings
+# 1.8 Protecting Resources -OSRs
 # 2.0 Business Use Notice
 
   template security_template_file do
@@ -34,10 +33,130 @@ else
     action :nothing
   end
 
-# 1.2.10 Logging - OSR Auditing
-# 1.2.11 Logging - OSR Auditing
+  registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\Application" do
+    values [{
+      :name => "RestrictGuestAccess",
+      :type => :dword,
+      :data => 0x1
+      }]
+  end
 
+  registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\Security" do
+    values [{
+      :name => "RestrictGuestAccess",
+      :type => :dword,
+      :data => 0x1
+      }]
+  end
 
+  registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\System" do
+    values [{
+      :name => "RestrictGuestAccess",
+      :type => :dword,
+      :data => 0x1
+      }]
+  end
+
+  registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\DNS Server" do
+    values [{
+      :name => "RestrictGuestAccess",
+      :type => :dword,
+      :data => 0x1
+      }]
+    only_if {registry_key_exists("HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\DNS Server")}
+  end
+
+  registry_key "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer" do
+    values [{
+      :name => "NoDriveTypeAutoRun",
+      :type => :dword,
+      :data => 0xFF
+      }]
+  end
+
+  if {registry_key_exists("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Security")} do
+    registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Security" do
+      values [{
+        :name => "AutoBackupLogFiles",
+        :type => :dword,
+        :data => 0x1
+        }
+        {
+        :name => "Retention",
+        :type => :dword,
+        :data => 0xFFFFFFFF
+        }]
+    end
+  else
+    registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\Security" do
+      values [{
+        :name => "AutoBackupLogFiles",
+        :type => :dword,
+        :data => 0x1
+        }
+        {
+        :name => "Retention",
+        :type => :dword,
+        :data => 0xFFFFFFFF
+        }]
+    end
+  end
+
+  if {registry_key_exists("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System")} do
+    registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System" do
+      values [{
+        :name => "AutoBackupLogFiles",
+        :type => :dword,
+        :data => 0x1
+        }
+        {
+        :name => "Retention",
+        :type => :dword,
+        :data => 0x0
+        }]
+    end
+  else
+    registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\System" do
+      values [{
+        :name => "AutoBackupLogFiles",
+        :type => :dword,
+        :data => 0x1
+        }
+        {
+        :name => "Retention",
+        :type => :dword,
+        :data => 0x0
+        }]
+    end
+  end
+
+  if {registry_key_exists("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application")} do
+    registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application" do
+      values [{
+        :name => "AutoBackupLogFiles",
+        :type => :dword,
+        :data => 0x1
+        }
+        {
+        :name => "Retention",
+        :type => :dword,
+        :data => 0x0
+        }]
+    end
+  else
+    registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\Application" do
+      values [{
+        :name => "AutoBackupLogFiles",
+        :type => :dword,
+        :data => 0x1
+        }
+        {
+        :name => "Retention",
+        :type => :dword,
+        :data => 0x0
+        }]
+    end
+  end
 
 # 1.5 Network Settings
 
@@ -73,8 +192,5 @@ else
   service "SNMP" do
     action :nothing
   end
-
-# 1.8 Protecting Resources -OSRs (except 1.8.22, 1.8.23)
-
 
 end
