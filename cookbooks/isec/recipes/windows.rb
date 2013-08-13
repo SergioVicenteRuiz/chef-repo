@@ -61,7 +61,7 @@ else
     values [{
       :name => "1",
       :type => :string,
-      :value => #{node['isec']['snmp_server']}
+      :value => "test"
       }]
     action :create_if_missing
     notifies :restart, "service[SNMP]", :immediately
