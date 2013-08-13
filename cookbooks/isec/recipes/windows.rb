@@ -18,8 +18,10 @@ if node['isec']['override'] == true
 else
 
 # 1.1 Password Requirements
-# 1.2 Logging
+# 1.2 Logging (except 1.2.10, 1.2.11)
 # 1.7 Identify and Authenticate Users
+# 1.8.22 Protecting Resources -OSRs - Registry Settings
+# 1.8.23 Protecting Resources -OSRs - Registry Settings
 # 2.0 Business Use Notice
 
   template security_template_file do
@@ -32,7 +34,9 @@ else
     action :nothing
   end
 
-# Missing Everyone Failure Audit
+# 1.2.10 Logging - OSR Auditing
+# 1.2.11 Logging - OSR Auditing
+
 
 
 # 1.5 Network Settings
@@ -70,7 +74,7 @@ else
     action :nothing
   end
 
-# 1.8 Protecting Resources -OSRs
+# 1.8 Protecting Resources -OSRs (except 1.8.22, 1.8.23)
 
 
 end
