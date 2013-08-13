@@ -57,7 +57,7 @@ else
     action :install
   end
 
-  registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\SNMP\\Parameters\\TrapConfiguration\\#{node['isec']['snmp_community']}" do
+  registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\SNMP\\Parameters\\TrapConfiguration\\ibm_community" do
     values [{
       :name => "1",
       :type => :string,
