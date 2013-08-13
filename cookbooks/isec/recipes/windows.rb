@@ -71,6 +71,4 @@ else
     action :nothing
   end
 
-# Protecting Resources –OSRs
-
 end
