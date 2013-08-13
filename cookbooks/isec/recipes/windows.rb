@@ -74,88 +74,85 @@ else
       }]
   end
 
-  if {registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Security", :machine)} do
-    registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Security" do
-      values [{
-        :name => "AutoBackupLogFiles",
-        :type => :dword,
-        :data => 0x1
-        }
-        {
-        :name => "Retention",
-        :type => :dword,
-        :data => 0xFFFFFFFF
-        }]
-    end
-  else
-    registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\Security" do
-      values [{
-        :name => "AutoBackupLogFiles",
-        :type => :dword,
-        :data => 0x1
-        }
-        {
-        :name => "Retention",
-        :type => :dword,
-        :data => 0xFFFFFFFF
-        }]
-    end
+  registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\Security" do
+    values [{
+      :name => "AutoBackupLogFiles",
+      :type => :dword,
+      :data => 0x1
+      }
+      {
+      :name => "Retention",
+      :type => :dword,
+      :data => 0xFFFFFFFF
+      }]
   end
 
-  if {registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System", :machine)} do
-    registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System" do
-      values [{
-        :name => "AutoBackupLogFiles",
-        :type => :dword,
-        :data => 0x1
-        }
-        {
-        :name => "Retention",
-        :type => :dword,
-        :data => 0x0
-        }]
-    end
-  else
-    registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\System" do
-      values [{
-        :name => "AutoBackupLogFiles",
-        :type => :dword,
-        :data => 0x1
-        }
-        {
-        :name => "Retention",
-        :type => :dword,
-        :data => 0x0
-        }]
-    end
+  registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Security" do
+    values [{
+      :name => "AutoBackupLogFiles",
+      :type => :dword,
+      :data => 0x1
+      }
+      {
+      :name => "Retention",
+      :type => :dword,
+      :data => 0xFFFFFFFF
+      }]
+    only_if {registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Security", :machine)}
   end
 
-  if {registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application", :machine)} do
-    registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application" do
-      values [{
-        :name => "AutoBackupLogFiles",
-        :type => :dword,
-        :data => 0x1
-        }
-        {
-        :name => "Retention",
-        :type => :dword,
-        :data => 0x0
-        }]
-    end
-  else
-    registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\Application" do
-      values [{
-        :name => "AutoBackupLogFiles",
-        :type => :dword,
-        :data => 0x1
-        }
-        {
-        :name => "Retention",
-        :type => :dword,
-        :data => 0x0
-        }]
-    end
+  registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\System" do
+    values [{
+      :name => "AutoBackupLogFiles",
+      :type => :dword,
+      :data => 0x1
+      }
+      {
+      :name => "Retention",
+      :type => :dword,
+      :data => 0xFFFFFFFF
+      }]
+  end
+
+  registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System" do
+    values [{
+      :name => "AutoBackupLogFiles",
+      :type => :dword,
+      :data => 0x1
+      }
+      {
+      :name => "Retention",
+      :type => :dword,
+      :data => 0xFFFFFFFF
+      }]
+    only_if {registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System", :machine)}
+  end
+
+  registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\Application" do
+    values [{
+      :name => "AutoBackupLogFiles",
+      :type => :dword,
+      :data => 0x1
+      }
+      {
+      :name => "Retention",
+      :type => :dword,
+      :data => 0xFFFFFFFF
+      }]
+  end
+
+  registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application" do
+    values [{
+      :name => "AutoBackupLogFiles",
+      :type => :dword,
+      :data => 0x1
+      }
+      {
+      :name => "Retention",
+      :type => :dword,
+      :data => 0xFFFFFFFF
+      }]
+    only_if {registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application", :machine)}
   end
 
 # 1.5 Network Settings
