@@ -24,6 +24,6 @@ template security_template_file do
 end
 
 execute 'secedit' do
-  command %Q(secedit.exe /configure /DB #{security_db_file} /CFG #{security_template_file} /override /quiet)
+  command %Q(secedit.exe /configure /DB #{security_db_file} /CFG #{security_template_file} /overwrite /quiet)
   action :nothing
 end
