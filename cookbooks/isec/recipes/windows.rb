@@ -64,20 +64,20 @@ else
   end
 
   registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\System" do
-    values [{:name => "AutoBackupLogFiles", :type => :dword, :data => 0x1},{:name => "Retention", :type => :dword, :data => 0xFFFFFFFF}]
+    values [{:name => "AutoBackupLogFiles", :type => :dword, :data => 0x1},{:name => "Retention", :type => :dword, :data => 0x0}]
   end
 
   registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System" do
-    values [{:name => "AutoBackupLogFiles", :type => :dword, :data => 0x1},{:name => "Retention", :type => :dword, :data => 0xFFFFFFFF}]
+    values [{:name => "AutoBackupLogFiles", :type => :dword, :data => 0x1},{:name => "Retention", :type => :dword, :data => 0x0}]
     only_if {registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System", :machine)}
   end
 
   registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\eventlog\\Application" do
-    values [{:name => "AutoBackupLogFiles", :type => :dword, :data => 0x1},{:name => "Retention", :type => :dword, :data => 0xFFFFFFFF}]
+    values [{:name => "AutoBackupLogFiles", :type => :dword, :data => 0x1},{:name => "Retention", :type => :dword, :data => 0x0}]
   end
 
   registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application" do
-    values [{:name => "AutoBackupLogFiles", :type => :dword, :data => 0x1},{:name => "Retention", :type => :dword, :data => 0xFFFFFFFF}]
+    values [{:name => "AutoBackupLogFiles", :type => :dword, :data => 0x1},{:name => "Retention", :type => :dword, :data => 0x0}]
     only_if {registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application", :machine)}
   end
 
