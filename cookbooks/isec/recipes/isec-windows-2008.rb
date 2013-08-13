@@ -9,6 +9,8 @@
 
 security_db_path = win_friendly_path("#{node['kernel']['os_info']['windows_directory']}/security/database")
 security_db_file = win_friendly_path(File.join(security_db_path, "isec-template.sdb"))
+security_log_path = win_friendly_path("#{node['kernel']['os_info']['windows_directory']}/security/logs")
+security_log_file = win_friendly_path(File.join(security_db_path, "isec-#{node['hostname']}.log"))
 security_template_path = win_friendly_path("#{node['kernel']['os_info']['windows_directory']}/security/templates")
 security_template_file = win_friendly_path(File.join(security_template_path, "isec-template.inf"))
 security_template_source = "isec-#{node['isec']['install_flavor']}-#{node['isec']['install_version']}.inf.erb"
@@ -29,7 +31,7 @@ else
   end
 
   execute 'secedit' do
-    command %Q(secedit.exe /configure /DB #{security_db_file} /CFG #{security_template_file} /overwrite /log isec-#{node['hostname']}.log /quiet)
+    command %Q(secedit.exe /configure /DB #{security_db_file} /CFG #{security_template_file} /overwrite /log #{security_log_file} /quiet)
     action :nothing
   end
 
