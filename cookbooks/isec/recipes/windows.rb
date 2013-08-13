@@ -28,7 +28,7 @@ else
   end
 
   execute 'secedit' do
-    command %Q('secedit.exe /configure /DB #{security_db_file} /CFG #{security_template_file} /overwrite /quiet')
+    command %Q("secedit.exe /configure /DB #{security_db_file} /CFG #{security_template_file} /overwrite /quiet")
     action :nothing
   end
 
