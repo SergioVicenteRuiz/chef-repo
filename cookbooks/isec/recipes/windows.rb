@@ -74,7 +74,7 @@ else
       }]
   end
 
-  if registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Security", :machine) do
+  if {registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Security", :machine)} do
     registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Security" do
       values [{
         :name => "AutoBackupLogFiles",
@@ -102,7 +102,7 @@ else
     end
   end
 
-  if registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System", :machine) do
+  if {registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System", :machine)} do
     registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\System" do
       values [{
         :name => "AutoBackupLogFiles",
@@ -130,7 +130,7 @@ else
     end
   end
 
-  if registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application", :machine) do
+  if {registry_key_exists?("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application", :machine)} do
     registry_key "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Eventlog\\Application" do
       values [{
         :name => "AutoBackupLogFiles",
