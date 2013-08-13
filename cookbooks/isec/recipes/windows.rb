@@ -18,7 +18,10 @@ if node['isec']['override'] == true
   include_recipe "isec::#{node['hostname']}"
 else
 
-# Configura seccion 1.1 (Password Requirements), 1.2 (Logging), 1.7 (Identify and Authenticate Users) y 2.0 (Business Use Notice)
+# 1.1 (Password Requirements)
+# 1.2 (Logging)
+# 1.7 (Identify and Authenticate Users)
+# 2.0 (Business Use Notice)
 
   template security_template_file do
     source security_template_source
@@ -26,13 +29,11 @@ else
   end
 
   execute 'secedit' do
-    command %Q(secedit.exe /configure /DB #{security_db_file} /CFG #{security_template_file} /overwrite /quiet)
+    command %Q('secedit.exe /configure /DB #{security_db_file} /CFG #{security_template_file} /overwrite /quiet')
     action :nothing
   end
 
-# Falta Everyone Failure Audit sobre directorios
-
-# Configura seccion 1.5 (Network Settings)
+# 1.5 (Network Settings)
 
   windows_feature "SimpleTCP" do
     action :remove
@@ -68,7 +69,6 @@ else
     action :nothing
   end
 
-# Configura seccion 1.8 (Protecting Resources –OSRs)
-
+# 1.8 (Protecting Resources –OSRs)
 
 end
