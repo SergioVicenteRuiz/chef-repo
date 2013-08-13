@@ -17,10 +17,10 @@ if node['isec']['override'] == true
   include_recipe "isec::#{node['hostname']}"
 else
 
-# Password Requirements
-# Logging
-# Identify and Authenticate Users
-# Business Use Notice
+# 1.1 Password Requirements
+# 1.2 Logging
+# 1.7 Identify and Authenticate Users
+# 2.0 Business Use Notice
 
   template security_template_file do
     source security_template_source
@@ -35,7 +35,7 @@ else
 # Missing Everyone Failure Audit
 
 
-# Network Settings
+# 1.5 Network Settings
 
   windows_feature "SimpleTCP" do
     action :remove
@@ -70,5 +70,8 @@ else
   service "SNMP" do
     action :nothing
   end
+
+# 1.8 Protecting Resources -OSRs
+
 
 end
