@@ -36,9 +36,9 @@ when "windows"
   default['isec']['install_flavor'] = "windows"
   case platform_version.to_f
     when 6.0, 6.1 # Windows Server 2008
-      default['isec']['windows_ver'] = "2008"
+      default['isec']['install_version'] = "2008"
     when 6.2 # Windows Server 2012
-      default['isec']['windows_ver'] = "2012"
+      default['isec']['install_version'] = "2012"
   end
 else
   default['isec']['install_flavor'] = "linux"

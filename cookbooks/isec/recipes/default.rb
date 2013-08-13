@@ -7,5 +7,5 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "isec::#{node['isec']['install_flavor']}"
+include_recipe "isec::isec-#{node['isec']['install_flavor']}-#{node['isec']['install_version']}"
 
