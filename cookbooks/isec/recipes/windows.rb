@@ -12,6 +12,7 @@ security_db_file = win_friendly_path(File.join(security_db_path, "isec-template.
 security_template_path = win_friendly_path("#{node['kernel']['os_info']['windows_directory']}/security/templates")
 security_template_file = win_friendly_path(File.join(security_template_path, "isec-template.inf"))
 security_template_source = "isec-#{node['isec']['install_flavor']}-#{node['isec']['windows_ver']}.inf.erb"
+snmp_registry_key = 
 
 if node['isec']['override'] == true
   include_recipe "isec::#{node['hostname']}"
@@ -53,8 +54,13 @@ else
     action :install
   end
 
-  windows_registry "HKLM\SYSTEM\CurrentControlSet\services\SNMP\Parameters\TrapConfiguration\#{node['isec']['snmp_community']}" do
-      values '1' => "#{node['isec']['snmp_server']}"
+  registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\SNMP\\Parameters\\TrapConfiguration\\#{node['isec']['snmp_community']}" do
+    values '1' => "#{node['isec']['snmp_server']}"
+    notifies :restart, "service[SNMP]", :immediately
+  end
+
+  service "SNMP" do
+    action :nothing
   end
 
 # Configura seccion 1.8 (Protecting Resources –OSRs)
