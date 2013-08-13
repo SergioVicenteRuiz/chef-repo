@@ -1,5 +1,8 @@
 [Unicode]
 Unicode=yes
+[Version]
+signature="$CHICAGO$"
+Revision=1
 [System Access]
 MinimumPasswordAge = 1
 MaximumPasswordAge = 90
@@ -11,7 +14,7 @@ LockoutDuration = -1
 ClearTextPassword = 0
 [Security Log]
 AuditLogRetentionPeriod = 1
-RetentionDays = 270
+RetentionDays = 90
 [Event Audit]
 AuditSystemEvents = 2
 AuditLogonEvents = 3
@@ -25,10 +28,9 @@ AuditAccountLogon = 3
 MaxTicketAge = 12
 MaxRenewAge = 7
 MaxServiceAge = 600
-[Version]
-signature="$CHICAGO$"
-Revision=1
-[Profile Description]
-Description=Implements several parameters for ISEC Tech Specs - Additional requirements for HIPAA customers
 [Registry Values]
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeCaption=1,"Title here for IBM Business Use Notice"
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeText=7,Text here for IBM Business Use Notice
 MACHINE\System\CurrentControlSet\Control\Lsa\SCENoApplyLegacyAuditPolicy=4,0
+[Profile Description]
+Description=Implements several parameters for ISEC Tech Specs

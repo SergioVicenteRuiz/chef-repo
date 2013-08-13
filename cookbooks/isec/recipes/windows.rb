@@ -11,19 +11,29 @@ security_db_path = win_friendly_path("#{node['kernel']['os_info']['windows_direc
 security_db_file = win_friendly_path(File.join(security_db_path, "isec-template.sdb"))
 security_template_path = win_friendly_path("#{node['kernel']['os_info']['windows_directory']}/security/templates")
 security_template_file = win_friendly_path(File.join(security_template_path, "isec-template.inf"))
+security_template_source = "isec-#{node['isec']['install_flavor']}-#{node['isec']['windows_ver']}.inf.erb"
 
 if node['isec']['override'] == true
-  security_template_source = "isec-#{node['hostname']}.inf.erb"
+  include_recipe "isec::#{node['hostname']}"
 else
-  security_template_source = "isec-#{node['isec']['install_flavor']}#{node['isec']['windows_ver']}.inf.erb"
-end
 
-template security_template_file do
-  source security_template_source
-  notifies :run, 'execute[secedit]', :immediately
-end
+# Configura seccion 1.1 (Password Requirements), 1.2 (Logging), 1.7 (Identify and Authenticate Users) y 2.0 (Business Use Notice)
 
-execute 'secedit' do
-  command %Q(secedit.exe /configure /DB #{security_db_file} /CFG #{security_template_file} /overwrite /quiet)
-  action :nothing
+  template security_template_file do
+    source security_template_source
+    notifies :run, 'execute[secedit]', :immediately
+  end
+
+  execute 'secedit' do
+    command %Q(secedit.exe /configure /DB #{security_db_file} /CFG #{security_template_file} /overwrite /quiet)
+    action :nothing
+  end
+
+# Falta Everyone Failure Audit sobre directorios
+
+# Configura seccion 1.5 (Network Settings)
+
+# Configura seccion 1.8 (Protecting Resources –OSRs)
+
+
 end
