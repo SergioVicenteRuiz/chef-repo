@@ -17,6 +17,11 @@ if node['isec']['override'] == true
   include_recipe "isec::#{node['hostname']}"
 else
 
+# 1.1 Password Requirements
+# 1.2 Logging
+# 1.7 Identify and Authenticate Users
+# 2.0 Business Use Notice
+
   template security_template_file do
     source security_template_source
     notifies :run, 'execute[secedit]', :immediately
@@ -26,6 +31,11 @@ else
     command %Q('secedit.exe /configure /DB #{security_db_file} /CFG #{security_template_file} /overwrite /quiet')
     action :nothing
   end
+
+# Missing Everyone Failure Audit
+
+
+# 1.5 Network Settings
 
   windows_feature "SimpleTCP" do
     action :remove
@@ -60,5 +70,7 @@ else
   service "SNMP" do
     action :nothing
   end
+
+# 1.8 Protecting Resources –OSRs
 
 end
