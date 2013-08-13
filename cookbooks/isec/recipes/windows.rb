@@ -46,7 +46,7 @@ else
   end
 
   windows_feature "IIS-FTPServer" do
-    action :install
+    action :remove
   end
 
   windows_feature "SNMP" do
