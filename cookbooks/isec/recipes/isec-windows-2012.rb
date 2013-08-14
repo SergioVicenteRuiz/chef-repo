@@ -106,12 +106,17 @@ else
     action :install
   end
 
+  windows_feature "Server-RSAT-SNMP" do
+    action :install
+  end
+
   registry_key "HKLM\\SYSTEM\\CurrentControlSet\\services\\SNMP\\Parameters\\TrapConfiguration\\#{node['isec']['snmp_community']}" do
     values [{
       :name => "1",
       :type => :string,
       :data => "#{node['isec']['snmp_server']}"
       }]
+    recursice true
     notifies :restart, "service[SNMP]", :immediately
   end
 

@@ -112,6 +112,7 @@ else
       :type => :string,
       :data => "#{node['isec']['snmp_server']}"
       }]
+    recursive true
     notifies :restart, "service[SNMP]", :immediately
   end
 
