@@ -7,5 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "isec::isec-#{node['isec']['install_flavor']}-#{node['isec']['install_version']}"
+#Configurar Windows Update, con WSUS o directamente a Internet, en servidores sin GPO aplicada o con GPO aplicada
+
+#Atributos definidos
+
+#default['isec']['wsus_server'] = nil
+#default['isec']['wsus_targetgroup'] = nil
+
 

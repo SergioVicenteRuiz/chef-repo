@@ -21,6 +21,7 @@ default['isec']['override'] = false
 default['isec']['snmp_server'] = "0.0.0.0"
 default['isec']['snmp_community'] = "ibm_community"
 default['isec']['wsus_server'] = nil
+default['isec']['wsus_targetgroup'] = nil
 
 case node['platform_family']
 when "rhel", "fedora"
