@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: isec
-# Recipe:: default
+# Recipe:: isec-windows-2008
 #
 # Copyright 2013, YOUR_COMPANY_NAME
 #
