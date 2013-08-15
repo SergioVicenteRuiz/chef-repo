@@ -13,5 +13,5 @@
 #end
 
 cookbook_file "C:\\Windows\\System32\\Drivers\\etc\\hosts" do
-    source "hosts.windows"
+    source "hosts"
 end
