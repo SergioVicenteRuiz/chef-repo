@@ -8,7 +8,7 @@
 #
 
 
-template "C:\\Windows\\System32\\Drivers\\etc\\hosts" do
+template "C:\\Windows\\System32\\Drivers\\etc\\hosts." do
     source "hosts.windows.erb"
 end
 
