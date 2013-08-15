@@ -19,7 +19,7 @@ when "smartos"
   default['osconfig']['hosts'] = "/etc/hosts"
 when "windows"
   default['osconfig']['install_flavor'] = "windows"
-  default['osconfig']['hosts'] = win_friendly_path("C:/Windows/System32/drivers/etc/hosts")
+  default['osconfig']['hosts'] = "C:/Windows/System32/drivers/etc/hosts"
 else
   default['osconfig']['install_flavor'] = nil
   default['osconfig']['hosts'] = "/etc/hosts"
