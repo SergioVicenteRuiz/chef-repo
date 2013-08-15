@@ -16,7 +16,7 @@ end
 search(:node,"chef_environment:_default").each do |default_node|
   hostsfile_entry default_node['ipaddress'] do
     hostname default_node['hostname']
-    aliases default_node['fqdn']
+    aliases [default_node['fqdn']]
   end
 end
 
