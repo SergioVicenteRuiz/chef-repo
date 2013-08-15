@@ -8,6 +8,10 @@
 #
 
 
-template "C:/Windows/System32/Drivers/etc/hosts" do
-    source "hosts.windows.erb"
+#template "C:\\Windows\\System32\\Drivers\\etc\\hosts" do
+#    source "hosts.windows.erb"
+#end
+
+cookbook_file "C:\\Windows\\System32\\Drivers\\etc\\hosts" do
+    source "hosts.windows"
 end
