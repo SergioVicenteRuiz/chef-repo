@@ -1,4 +1,5 @@
 #hosts file for windows servers
+#15ago2013
 192.168.122.1		oc4151137872.ibm.com
 192.168.122.92		oc0644314035.ibm.com yum.ibm.com
 192.168.122.17		ADMINIB-UGA3MV4.ibm.com
