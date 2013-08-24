@@ -7,13 +7,13 @@
 # All rights reserved - Do Not Redistribute
 #
 hostsfile_entry '192.168.122.1' do
-  hostname 'oc4151137872'
-  aliases ['oc4151137872.ibm.com']
+  hostname 'oc4151137872.ibm.com'
+  aliases ['oc4151137872']
 end
 
 hostsfile_entry '192.168.122.92' do
-  hostname 'oc0644314035'
-  aliases ['yum.ibm.com','oc0644314035.ibm.com']
+  hostname 'oc0644314035.ibm.com'
+  aliases ['yum.ibm.com','oc0644314035']
 end
 
 search(:node,"chef_environment:_default").each do |default_node|
