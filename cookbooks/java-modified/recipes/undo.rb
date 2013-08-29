@@ -1,9 +1,8 @@
 #
-# Author:: Seth Chisamore (<schisamo@opscode.com>)
-# Cookbook Name:: iis
-# Recipe:: mod_deploy
+# Cookbook Name:: java-modified
+# Recipe:: undo 
 #
-# Copyright 2011, Opscode, Inc.
+# Copyright 2012, Eric G. Wolfe
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,9 +17,18 @@
 # limitations under the License.
 #
 
-include_recipe "iis"
+# Uninstall JRE 7 y JDK 1.7
 
-webpi_product "WDeploy" do
-  accept_eula node['iis']['accept_eula']
-  action :install
+execute "Uninstall JRE" do
+  command "msiexec /qn /x #{node['java']['jre']['appid']} /l*v %temp%/uninstall_jre.log"
 end
+
+execute "Uninstall JDK" do
+  command "msiexec /qn /x #{node['java']['jdk']['appid']} /l*v %temp%/uninstall_jdk.log"
+end
+
+ruby_block "remove java-modified::undo from run list" do
+  block do
+    node.run_list.remove("recipe[java-modified::undo]")
+  end
+end 
