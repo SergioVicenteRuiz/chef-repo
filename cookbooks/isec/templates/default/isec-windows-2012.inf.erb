@@ -1,0 +1,40 @@
+[Unicode]
+Unicode=yes
+[Version]
+signature="$CHICAGO$"
+Revision=1
+[System Access]
+MinimumPasswordAge = 1
+MaximumPasswordAge = 90
+MinimumPasswordLength = 8
+PasswordHistorySize = 8
+LockoutBadCount = 5
+ResetLockoutCount = 30
+LockoutDuration = -1
+NewAdministratorName = "ibm_admin"
+ClearTextPassword = 0
+[Security Log]
+AuditLogRetentionPeriod = 1
+RetentionDays = 90
+[Event Audit]
+AuditSystemEvents = 2
+AuditLogonEvents = 3
+AuditObjectAccess = 2
+AuditPrivilegeUse = 3
+AuditPolicyChange = 3
+AuditAccountManage = 3
+AuditDSAccess = 2
+AuditAccountLogon = 3
+[Kerberos Policy]
+MaxTicketAge = 12
+MaxRenewAge = 7
+MaxServiceAge = 600
+[Registry Values]
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeCaption=1,"Title here for IBM Business Use Notice"
+MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeText=7,Text here for IBM Business Use Notice
+MACHINE\System\CurrentControlSet\Control\Lsa\SCENoApplyLegacyAuditPolicy=4,0
+[Registry Keys]
+"MACHINE\SYSTEM\CurrentControlSet\services\eventlog\Security",2,"D:PAR(A;CI;KA;;;SY)(A;CI;KA;;;BA)(A;CI;KR;;;S-1-5-80-880578595-1860270145-482643319-2788375705-1540778122)"
+"CLASSES_ROOT",2,"D:PAR(A;CI;KA;;;BA)(A;CIIO;KA;;;CO)(A;CI;KA;;;SY)(A;CI;KR;;;BU)"
+[Profile Description]
+Description=Implements several parameters for ISEC Tech Specs 
